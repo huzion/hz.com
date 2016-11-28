@@ -1,0 +1,9 @@
+{
+    "name": "hz",
+    "description": "hz",
+    "devDependencies": {},
+    "dependencies": {
+        "jquery": "^1.12.4"
+    },
+    "version": "0.0.1"
+}
