@@ -10,9 +10,10 @@ const through2 = require('through2');
 
 
 /*引入构建模块*/
-const js       = require('./lib/javscript');
-const sprite   = require('./lib/sprite');
-const image   = require('./lib/image');
+const js     = require('./lib/javscript');
+const sprite = require('./lib/sprite');
+const image  = require('./lib/image');
+const less   = require('./lib/less');
 
 var main = {
     /*初始化项目*/

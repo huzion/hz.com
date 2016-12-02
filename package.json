@@ -27,9 +27,7 @@
     "vinyl-buffer": "^1.0.0"
   },
   "dependencies": {
-    "antd": "^2.5.0",
-    "jquery": "^1.12.4",
-    "react": "^15.4.1"
+    "jquery": "^1.12.4"
   },
   "version": "0.0.1"
 }
