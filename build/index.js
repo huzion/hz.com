@@ -12,6 +12,7 @@ const through2 = require('through2');
 /*引入构建模块*/
 const js       = require('./lib/javscript');
 const sprite   = require('./lib/sprite');
+const image   = require('./lib/image');
 
 var main = {
     /*初始化项目*/
@@ -27,9 +28,11 @@ var main = {
         var _self = this;
 
         sprite.init(config, ()=> {
-            js.init(config,()=>{
+            image.init(config, ()=> {
+                js.init(config,()=>{
 
-            });
+                });
+            })
         })
 
 

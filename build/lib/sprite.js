@@ -57,8 +57,8 @@ var main = {
                     /*单元雪碧图边框*/
                     padding: 5,
 
-                    /*生成的雪碧图路径*/
-                    imgPath: _imgPath,
+                    /*生成的雪碧图路径(作废，在下面gulp.dest处生成)*/
+                    // imgPath: _imgPath,
 
                     /*合并布局方式*/
                     algorithm: 'binary-tree',
