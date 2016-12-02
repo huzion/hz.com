@@ -1,0 +1,1 @@
+{"version":3,"sources":["user/pwd/changePwd.js"],"names":["obj","init"],"mappings":"AAAA,GAAIA,MACAC,KAAM,aAIVD,KAAIC","file":"../../../js/app/hz_user_pwd_changePwd.js","sourcesContent":["var obj = {\r\n    init: function() {\r\n\r\n    }\r\n}\r\nobj.init();\r\n"]}
