@@ -41,7 +41,9 @@ gulp.task('init',() => {
     build.init(config);
 });
 
-
+gulp.task('watch', ()=> {
+    console.log('watch task begining....')
+});
 
 
 

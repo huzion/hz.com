@@ -45,6 +45,15 @@ var main = {
 
 
 
+    },
+
+    /*执行watch*/
+    watcher: function() {
+        var _self = this;
+
+
+
+
     }
 }
 
