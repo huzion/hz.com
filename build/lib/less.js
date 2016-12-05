@@ -11,13 +11,14 @@ const LessPluginAutoprefix = require('less-plugin-autoprefix');
 const autoprefixPlugin     = new LessPluginAutoprefix({browsers: ["last 5 versions"]});
 const sourcemaps           = require('gulp-sourcemaps');
 const path                 = require('path');
+const rename               = require('gulp-rename');
 
 var main = {
     init: function(config, callback) {
         var _self = this;
 
         /*处理less*/
-        _self.buildLess();
+        _self.buildLess(config);
 
         callback();
     },
@@ -62,3 +63,4 @@ var main = {
         console.log('处理Less完成！');
     }
 }
+module.exports = main;

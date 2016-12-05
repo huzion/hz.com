@@ -25,8 +25,8 @@ const imagemin             = require('gulp-imagemin');
 /*引入构建工具*/
 const build = require('./build/index');
 
-const config    = require('./config.json');
-
+var config    = require('./config.json');
+config.dirname = __dirname;
 
 gulp.task('default',() => {
     build.devBuild(config);
@@ -43,6 +43,9 @@ gulp.task('init',() => {
 
 gulp.task('watch', ()=> {
     console.log('watch task begining....')
+
+    build.watcher(config);
+
 });
 
 

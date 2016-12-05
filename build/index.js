@@ -8,12 +8,12 @@
 const gulp     = require('gulp')
 const through2 = require('through2');
 
-
 /*引入构建模块*/
-const js     = require('./lib/javscript');
-const sprite = require('./lib/sprite');
-const image  = require('./lib/image');
-const less   = require('./lib/less');
+const js       = require('./lib/javscript');
+const sprite   = require('./lib/sprite');
+const image    = require('./lib/image');
+const less     = require('./lib/less');
+const watcher  = require('./lib/watch');
 
 var main = {
     /*初始化项目*/
@@ -30,11 +30,13 @@ var main = {
 
         sprite.init(config, ()=> {
             image.init(config, ()=> {
-                js.init(config,()=>{
+                less.init(config, () => {
+                    js.init(config, ()=>{
 
+                    });
                 });
-            })
-        })
+            });
+        });
 
 
     },
@@ -48,10 +50,12 @@ var main = {
     },
 
     /*执行watch*/
-    watcher: function() {
+    watcher: function(config) {
         var _self = this;
 
+        watcher(config, () => {
 
+        });
 
 
     }

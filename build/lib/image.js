@@ -7,6 +7,7 @@
 const gulp     = require('gulp');
 const imagemin = require('gulp-imagemin');
 const gutil    = require('gulp-util');
+const rename   = require('gulp-rename');
 
 var main = {
     init: function(config, callback) {
