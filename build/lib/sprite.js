@@ -11,10 +11,12 @@ const spritesmith = require('gulp.spritesmith');
 const rename      = require('gulp-rename');
 const imagemin    = require('gulp-imagemin');
 
+
 var main = {
-    init: function(config, callback) {
+    init: function(callback) {
         var _self = this;
 
+        var config = global.Cache.config;
         /*雪碧图处理*/
         _self.sprite(config);
 
@@ -26,11 +28,11 @@ var main = {
         console.log('开始构建雪碧图...')
         var _self = this;
 
-        var srcDir = config.path.src,
-            debugDir = config.path.debug,
-            distDir = config.path.dist;
+        var srcDir = config.srcPath,
+            debugDir = config.debugPath,
+            distDir = config.distPath;
 
-        var _spSrcPath = config.path.src + '/sprite';
+        var _spSrcPath = srcDir + '/sprite';
         var destDir = config.evn === "test" || config.evn === "www" ? distDir : debugDir;
 
         var _spFile = [
@@ -80,7 +82,6 @@ var main = {
                 }))
                 .pipe(gulpif('*.png', gulp.dest(outputImgPath)))
                 .pipe(gulpif('*.less', gulp.dest(outputLessPath)))
-
         });
         console.log('雪碧图构建完成!')
     },

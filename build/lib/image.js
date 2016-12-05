@@ -10,9 +10,9 @@ const gutil    = require('gulp-util');
 const rename   = require('gulp-rename');
 
 var main = {
-    init: function(config, callback) {
+    init: function(callback) {
         var _self = this;
-
+        var config = global.Cache.config;
         /*图片处理*/
         _self.image(config);
 
@@ -22,13 +22,13 @@ var main = {
     /*图片处理"*/
     image: function(config) {
         gutil.log('处理图片开始...')
-        const srcDir      = config.path.src;
-        const debugDir    = config.path.debug;
-        const distDir     = config.path.dist;
+        const srcDir      = config.srcPath;
+        const debugDir    = config.debugPath;
+        const distDir     = config.distPath;
         const _imgSrcPath = srcDir + '/img';
-        var destDir = config.evn === "test" || config.evn === "www" ? distDir : debugDir;
+        var destDir       = config.evn === "test" || config.evn === "www" ? distDir : debugDir;
 
-        var _imgFile = [
+        var _imgFile      = [
             `${_imgSrcPath}/*.{gif,jpg,jpeg,png,svg}`,
             `${_imgSrcPath}/**/*.{gif,jpg,jpeg,png,svg}`
         ];

@@ -7,6 +7,7 @@
 const gulp  = require('gulp');
 const watch = require('gulp-watch');
 const gutil = require('gulp-util');
+const color = gutil.colors;
 const path  = require('path');
 
 /*引入构建模块*/
@@ -15,11 +16,10 @@ const sprite   = require('./sprite');
 const image    = require('./image');
 const less     = require('./less');
 
-
 var utils = {
     /*要监视的文件*/
     file: function(config) {
-        var srcDir = config.path.src;
+        var srcDir = config.srcPath;
         var arr = [
             `${srcDir}/img/**/*.{gif,jpg,jpeg,png,svg}`,
             `${srcDir}/js/**/*.js`,
@@ -31,13 +31,11 @@ var utils = {
         return arr;
     },
 
-    /*判断文件类型*/
-    getType: (dir, srcDir) => {
-
-        _path = dir.replace(/\\/g, '/').replace(/\/\//g,'/');
-        var arr = _path.split('/');
-
-        console.log("文件路径::::::" + arr)
+    /*判断文件类型（获取处理的文件的src目录）*/
+    getType: (filePath, srcDir) => {
+        var _path = path.relative(srcDir, filePath);
+        _path = _path.replace(/\\/g, '/').replace(/\/\//g,'/');
+        return _path.split('/')[0];
     },
 
     /*雪碧图构建*/
@@ -62,15 +60,14 @@ var utils = {
 };
 
 /*watch执地*/
-var watcher = function(config) {
+var watcher = function() {
+    var config = global.Cache.config;
+
     var _self = this;
     var _file = utils.file(config);
     var _list = [];
-    var srcDir = config.path.src;
+    var srcDir = config.srcPath;
     var _dirname = config.dirname;
-    var path.join('')
-
-
 
     watch(_file, (file) => {
         try {
@@ -85,34 +82,24 @@ var watcher = function(config) {
                 if(_list.indexOf(_filePath) === -1) {
                     _list.push(_filePath);
                     var _type = utils.getType(_filePath, srcDir);
-
-
-
-
                     switch (_type) {
                         case "html":
-                            // html.init(config, (_filePath) => gutil.log(file.relative));
+                            // html.init((_filePath) => gutil.log(file.relative));
                             break;
                         case "img":
-                            image.init(config, (_filePath) => gutil.log(file.relative));
+                            image.init((_filePath) => gutil.log(file.relative + '.........[done]'));
                             break;
                         case "js":
-                            js.init(config, (_filePath) => gutil.log(file.relative));
+                            js.init((_filePath) => gutil.log(file.relative + '.........[done]'));
                             break;
                         case "less":
-                            less.init(config, (_filePath) => gutil.log(file.relative));
+                            less.init((_filePath) => gutil.log(file.relative + '.........[done]'));
                             break;
 
                         case "sprite":
-                            sprite.init(config, (_filePath) => gutil.log(file.relative));
+                            sprite.init((_filePath) => gutil.log(file.relative + '.........[done]'));
                             break;
                     }
-
-
-                }
-
-                if(!!watch_timer) {
-                    clearTimeout(watch_timer)
                 }
 
                 /*防止重复构建，设置3秒间隔*/

@@ -11,9 +11,9 @@ const path       = require('path');
 const rename     = require('gulp-rename');
 
 var main = {
-    init: function(config, callback) {
-        var _self = this;
-
+    init: function(callback) {
+        var _self  = this;
+        var config = global.Cache.config;
         if(config.env === 'test' || config.env === 'www') {
             _self.publishJs(config);
         } else {
@@ -27,10 +27,10 @@ var main = {
     buildJs: function(config) {
         console.log('开始构建JS...');
 
-        const jsPrefix = config.jsPrefix;
-        const _jsSrcPath = config.path.src + '/js';
+        const prefix     = config.prefix;
+        const _jsSrcPath = config.srcPath + '/js';
         const _appJsPath = '/app';
-        const _jsFile = [
+        const _jsFile    = [
             `${_jsSrcPath}/${_appJsPath}/**/*.js?(x)`,
             `!${_jsSrcPath}/**/_*/*.js?(x)`,
             `!${_jsSrcPath}/**/_*/**/*.js?(x)`,
@@ -41,13 +41,13 @@ var main = {
             .pipe(rename(function(path) {
                 var _dirname = path.dirname.replace(/\\/g,'_');
                 if(!!_dirname && _dirname !== '.') {
-                    path.basename = jsPrefix + _dirname + '_' + path.basename;
+                    path.basename = prefix + _dirname + '_' + path.basename;
                 } else {
-                    path.basename = jsPrefix + path.basename;
+                    path.basename = prefix + path.basename;
                 }
                 path.dirname = '/';
             }))
-            .pipe(gulp.dest(config.path.debug + '/js/'))
+            .pipe(gulp.dest(config.debugPath + '/js/'))
         console.log('JS构建完成！');
     },
 
@@ -60,9 +60,9 @@ var main = {
             .pipe(rename(function(path) {
                 var _dirname = path.dirname.replace(/\\/g,'_');
                 if(!!_dirname && _dirname !== '.') {
-                    path.basename = jsPrefix + _dirname + '_' + path.basename;
+                    path.basename = prefix + _dirname + '_' + path.basename;
                 } else {
-                    path.basename = jsPrefix + path.basename;
+                    path.basename = prefix + path.basename;
                 }
                 path.dirname = '/';
             }))

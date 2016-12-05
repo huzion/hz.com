@@ -14,9 +14,9 @@ const path                 = require('path');
 const rename               = require('gulp-rename');
 
 var main = {
-    init: function(config, callback) {
+    init: function(callback) {
         var _self = this;
-
+        var config = global.Cache.config;
         /*处理less*/
         _self.buildLess(config);
 
@@ -28,10 +28,10 @@ var main = {
         console.log('开始处理Less...');
         var _self = this;
 
-        const jsPrefix     = config.jsPrefix;
-        const srcDir       = config.path.src;
-        const debugDir     = config.path.debug;
-        const distDir      = config.path.dist;
+        const prefix     = config.prefix;
+        const srcDir       = config.srcPath;
+        const debugDir     = config.debugPath;
+        const distDir      = config.distPath;
         const _lessSrcPath = srcDir + '/less';
         var destDir        = config.evn === "test" || config.evn === "www" ? distDir : debugDir;
 
@@ -47,9 +47,9 @@ var main = {
             .pipe(rename(function(path) {
                 var _dirname = path.dirname.replace(/\\/g,'_');
                 if(!!_dirname && _dirname !== '.') {
-                    path.basename = jsPrefix + _dirname + '_' + path.basename;
+                    path.basename = prefix + _dirname + '_' + path.basename;
                 } else {
-                    path.basename = jsPrefix + path.basename;
+                    path.basename = prefix + path.basename;
                 }
 
                 path.dirname = '/';
