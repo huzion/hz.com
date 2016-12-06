@@ -6,7 +6,9 @@
 /*引入npm包*/
 const gulp        = require('gulp');
 const gutil       = require('gulp-util');
+const color       = gutil.colors;
 const fileinclude = require('gulp-file-include');
+const through     = require('through2');
 
 var main = {
     init: function(callback) {
@@ -38,6 +40,10 @@ var main = {
                 basepath: '@file'
             }))
             .pipe(gulp.dest(destDir + '/html'))
+            .pipe(through.obj(function(file,enc,cb){
+                console.log(color.yellow(file.contents.toString('utf-8')))
+                console.log(color.green(file.path) + '.........' + color.cyan('[done]'));
+            }))
 
         gutil.log('处理HTML完成');
     }

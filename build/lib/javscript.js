@@ -4,15 +4,17 @@
  */
 
 /*引入npm包*/
-const gulp       = require('gulp');
-const uglify     = require('gulp-uglify');
-const sourcemaps = require('gulp-sourcemaps');
-const path       = require('path');
-const rename     = require('gulp-rename');
-const through    = require('through2');
-const gutil      = require('gulp-util');
-const color      = gutil.colors;
-const concat     = require('gulp-concat');
+const gulp         = require('gulp');
+const uglify       = require('gulp-uglify');
+const sourcemaps   = require('gulp-sourcemaps');
+const path         = require('path');
+const rename       = require('gulp-rename');
+const through      = require('through2');
+const gutil        = require('gulp-util');
+const color        = gutil.colors;
+const concat       = require('gulp-concat');
+const rev          = require('gulp-rev');
+const revCollector = require('gulp-rev-collector');
 
 var main = {
     init: function(callback) {
@@ -42,6 +44,8 @@ var main = {
         ];
 
         gulp.src(_jsFile)
+            .pipe(sourcemaps.init())
+            .pipe(uglify())
             .pipe(rename(function(path) {
                 var _dirname = path.dirname.replace(/\\/g,config.separator);
                 if(!!_dirname && _dirname !== '.') {
@@ -51,7 +55,11 @@ var main = {
                 }
                 path.dirname = '/';
             }))
+            .pipe(rev())
+            .pipe(sourcemaps.write('../../maps/sourcemaps/js'))
             .pipe(gulp.dest(config.debugPath + '/js/'))
+            .pipe(rev.manifest('jsMap.json',{"merge":true}))
+            .pipe(gulp.dest(config.dirname + '/maps/'))
             .pipe(through.obj(function(file,enc,cb){
                 console.log(color.green(file.path) + '.........' + color.cyan('[done]'));
             }))

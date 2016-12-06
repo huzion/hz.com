@@ -15,6 +15,7 @@ const js       = require('./javscript');
 const sprite   = require('./sprite');
 const image    = require('./image');
 const less     = require('./less');
+const html     = require('./html');
 
 var utils = {
     /*要监视的文件*/
@@ -61,18 +62,16 @@ var utils = {
 
 /*watch执地*/
 var watcher = function() {
-    var config = global.Cache.config;
-
-    var _self = this;
-    var _file = utils.file(config);
-    var _list = [];
-    var srcDir = config.srcPath;
+    var config   = global.Cache.config;
+    var _self    = this;
+    var _file    = utils.file(config);
+    var _list    = [];
+    var srcDir   = config.srcPath;
     var _dirname = config.dirname;
-
+    console.log(color.yellow('执行watch'));
+    
     watch(_file, (file) => {
         try {
-            console.log('执行watch方法')
-
             var _event = file.event;
             var _filePath;
 
@@ -84,7 +83,7 @@ var watcher = function() {
                     var _type = utils.getType(_filePath, srcDir);
                     switch (_type) {
                         case "html":
-                            // html.init((_filePath) => gutil.log(file.relative));
+                            html.init((_filePath) => gutil.log(color.green(file.relative) + '.........' + color.cyan('[done]')));
                             break;
                         case "img":
                             image.init((_filePath) => gutil.log(color.green(file.relative) + '.........' + color.cyan('[done]')));
@@ -106,12 +105,9 @@ var watcher = function() {
                 var watch_timer = setTimeout(() => {
                     _list = [];
                 }, 3000);
-
             }
-
-
         } catch(err) {
-            console.log(err)
+            console.log(color.red(err));
         }
     });
 };

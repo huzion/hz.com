@@ -15,6 +15,8 @@ const rename               = require('gulp-rename');
 const through              = require('through2');
 const gutil                = require('gulp-util');
 const color                = gutil.colors;
+const rev                  = require('gulp-rev');
+const revCollector         = require('gulp-rev-collector');
 
 var main = {
     init: function(callback) {
@@ -29,14 +31,14 @@ var main = {
     /*处理less*/
     buildLess: function(config) {
         console.log('开始处理Less...');
-        var _self = this;
+        var _self          = this;
 
-        const prefix     = config.prefix;
+        const prefix       = config.prefix;
         const srcDir       = config.srcPath;
         const debugDir     = config.debugPath;
         const distDir      = config.distPath;
         const _lessSrcPath = srcDir + '/less';
-        var destDir        = config.evn === "test" || config.evn === "www" ? distDir : debugDir;
+        const destDir      = config.evn === "test" || config.evn === "www" ? distDir : debugDir;
 
         const _lessFile    = [
             `${_lessSrcPath}/**/*.less`,
@@ -54,15 +56,17 @@ var main = {
                 } else {
                     path.basename = prefix + config.separator + path.basename;
                 }
-
                 path.dirname = '/';
             }))
             .pipe(less({
                 plugins: [autoprefixPlugin]
             }))
             .pipe(cleanCss())
-            .pipe(sourcemaps.write('../../maps/sourcemaps/css'))
+            .pipe(rev())
+            .pipe(sourcemaps.write(config.dirname + '/maps/sourcemaps/css'))
             .pipe(gulp.dest(destDir + '/css/'))
+            .pipe(rev.manifest('cssMap.json',{"merge":true}))
+            .pipe(gulp.dest(config.dirname + '/maps/'))
             .pipe(through.obj(function(file,enc,cb){
                 console.log(color.green(file.path) + '..........' + color.cyan('[done]'));
             }))
