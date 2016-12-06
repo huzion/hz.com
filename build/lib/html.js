@@ -9,6 +9,7 @@ const gutil       = require('gulp-util');
 const color       = gutil.colors;
 const fileinclude = require('gulp-file-include');
 const through     = require('through2');
+const ejs         = require('gulp-ejs');
 
 var main = {
     init: function(callback) {
@@ -26,7 +27,7 @@ var main = {
         const debugDir     = config.debugPath;
         const distDir      = config.distPath;
         const _htmlSrcPath = srcDir + '/html';
-        var destDir        = config.evn === "test" || config.evn === "www" ? distDir : debugDir;
+        var destDir        = config.env === "test" || config.env === "www" ? distDir : debugDir;
         var _htmlFile      = [
             `${_htmlSrcPath}/**/*.html`,
             `!${_htmlSrcPath}/**/_*.html`,
@@ -39,9 +40,12 @@ var main = {
                 prefix: '@@',
                 basepath: '@file'
             }))
+            .pipe(ejs({
+                int_css: 'csspathstring',
+                int_js: 'jspathstring'
+            }).on('error', gutil.log))
             .pipe(gulp.dest(destDir + '/html'))
             .pipe(through.obj(function(file,enc,cb){
-                console.log(color.yellow(file.contents.toString('utf-8')))
                 console.log(color.green(file.path) + '.........' + color.cyan('[done]'));
             }))
 

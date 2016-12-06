@@ -30,7 +30,7 @@ var main = {
         const debugDir    = config.debugPath;
         const distDir     = config.distPath;
         const _imgSrcPath = srcDir + '/img';
-        var destDir       = config.evn === "test" || config.evn === "www" ? distDir : debugDir;
+        var destDir       = config.env === "test" || config.env === "www" ? distDir : debugDir;
 
         var _imgFile      = [
             `${_imgSrcPath}/*.{gif,jpg,jpeg,png,svg}`,
