@@ -37,7 +37,7 @@ var main = {
                 prefix: '@@',
                 basepath: '@file'
             }))
-            .pipe(gulp.dest(destDir))
+            .pipe(gulp.dest(destDir + '/html'))
 
         gutil.log('处理HTML完成');
     }

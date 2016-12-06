@@ -10,7 +10,9 @@ const gulpif      = require('gulp-if');
 const spritesmith = require('gulp.spritesmith');
 const rename      = require('gulp-rename');
 const imagemin    = require('gulp-imagemin');
-
+const through     = require('through2');
+const gutil       = require('gulp-util');
+const color       = gutil.colors;
 
 var main = {
     init: function(callback) {
@@ -82,6 +84,9 @@ var main = {
                 }))
                 .pipe(gulpif('*.png', gulp.dest(outputImgPath)))
                 .pipe(gulpif('*.less', gulp.dest(outputLessPath)))
+                .pipe(through.obj(function(file,enc,cb){
+                    console.log(color.green(file.path) + '..........' + color.cyan('[done]'));
+                }))
         });
         console.log('雪碧图构建完成!')
     },

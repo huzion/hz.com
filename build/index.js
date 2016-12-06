@@ -20,18 +20,19 @@ const watcher  = require('./lib/watch');
 var main = {
     /*初始化项目*/
     init: function(config) {
-        console.log('项目初始化...')
-
         var _self = this;
 
+        /*全局配置缓存*/
         _self.setting(config);
 
-        var _config = config;
-        console.log('项目初始化完成！')
+        /*执行dev构建*/
+        _self.dev();
+
     },
 
     /*配置config缓存*/
     setting: function(config) {
+        console.log('载入配置信息.......')
         global.Cache        = global.Cache || function(){return config};
         global.Cache.config = config;
         var _config         = global.Cache.config;
@@ -43,41 +44,33 @@ var main = {
     },
 
     /*开发环境构建*/
-    devBuild: function(config) {
-        var _self = this;
-
+    dev: function() {
         sprite.init(() => {
             image.init(() => {
                 less.init(() => {
                     js.init(() =>{
                         html.init(() => {
-                            _self.watcher(() =>{});
+                            watcher(() =>{});
                         });
                     });
                 });
             });
         });
-
-
     },
 
     /*发布环境构建*/
-    publishBuild: function(config) {
+    publish: function() {
         var _self = this;
-
-
-
     },
 
-    /*执行watch*/
-    watcher: function(config) {
+    /*dev环境核心库构建*/
+    core: function(config) {
         var _self = this;
 
-        watcher(config, () => {
+        /*全局配置缓存*/
+        _self.setting(config);
 
-        });
-
-
+        js.core();
     }
 }
 

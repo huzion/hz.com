@@ -12,6 +12,9 @@ const autoprefixPlugin     = new LessPluginAutoprefix({browsers: ["last 5 versio
 const sourcemaps           = require('gulp-sourcemaps');
 const path                 = require('path');
 const rename               = require('gulp-rename');
+const through              = require('through2');
+const gutil                = require('gulp-util');
+const color                = gutil.colors;
 
 var main = {
     init: function(callback) {
@@ -45,11 +48,11 @@ var main = {
         gulp.src(_lessFile)
             .pipe(sourcemaps.init())
             .pipe(rename(function(path) {
-                var _dirname = path.dirname.replace(/\\/g,'_');
+                var _dirname = path.dirname.replace(/\\/g,config.separator);
                 if(!!_dirname && _dirname !== '.') {
-                    path.basename = prefix + _dirname + '_' + path.basename;
+                    path.basename = prefix + config.separator + _dirname + config.separator + path.basename;
                 } else {
-                    path.basename = prefix + path.basename;
+                    path.basename = prefix + config.separator + path.basename;
                 }
 
                 path.dirname = '/';
@@ -60,6 +63,9 @@ var main = {
             .pipe(cleanCss())
             .pipe(sourcemaps.write('../../maps/sourcemaps/css'))
             .pipe(gulp.dest(destDir + '/css/'))
+            .pipe(through.obj(function(file,enc,cb){
+                console.log(color.green(file.path) + '..........' + color.cyan('[done]'));
+            }))
         console.log('处理Less完成！');
     }
 }

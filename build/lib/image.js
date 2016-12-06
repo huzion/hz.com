@@ -7,7 +7,9 @@
 const gulp     = require('gulp');
 const imagemin = require('gulp-imagemin');
 const gutil    = require('gulp-util');
+const color    = gutil.colors;
 const rename   = require('gulp-rename');
+const through  = require('through2');
 
 var main = {
     init: function(callback) {
@@ -36,6 +38,9 @@ var main = {
         gulp.src(_imgFile)
             .pipe(imagemin())
             .pipe(gulp.dest(destDir + '/img/'))
+            .pipe(through.obj(function(file,enc,cb){
+                console.log(color.green(file.path) + '..........' + color.cyan('[done]'));
+            }))
         gutil.log('处理图片完成！');
     }
 }

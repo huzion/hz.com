@@ -30,9 +30,8 @@ config.dirname = config.dirname || __dirname;
 
 gulp.task('default',() => {
     build.init(config);
-    build.devBuild(config);
+    build.dev(config);
 });
-
 
 gulp.task('build',() => {
     build.publishBuild(config);
@@ -49,7 +48,9 @@ gulp.task('watch', ()=> {
 
 });
 
-
+gulp.task('core', () => {
+    build.core(config);
+})
 
 
 

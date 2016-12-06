@@ -87,17 +87,17 @@ var watcher = function() {
                             // html.init((_filePath) => gutil.log(file.relative));
                             break;
                         case "img":
-                            image.init((_filePath) => gutil.log(file.relative + '.........[done]'));
+                            image.init((_filePath) => gutil.log(color.green(file.relative) + '.........' + color.cyan('[done]')));
                             break;
                         case "js":
-                            js.init((_filePath) => gutil.log(file.relative + '.........[done]'));
+                            js.init((_filePath) => gutil.log(color.green(file.relative) + '.........' + color.cyan('[done]')));
                             break;
                         case "less":
-                            less.init((_filePath) => gutil.log(file.relative + '.........[done]'));
+                            less.init((_filePath) => gutil.log(color.green(file.relative) + '.........' + color.cyan('[done]')));
                             break;
 
                         case "sprite":
-                            sprite.init((_filePath) => gutil.log(file.relative + '.........[done]'));
+                            sprite.init((_filePath) => gutil.log(color.green(file.relative) + '.........' + color.cyan('[done]')));
                             break;
                     }
                 }
