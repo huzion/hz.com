@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>首页</title>
+<title>@@title</title>
 <link rel="dns-prefetch" href="//cdn.hz.com" />
 <meta name="description" content="说明" />
 <meta name="Keywords" content="关键词" />
@@ -10,12 +10,13 @@
 <meta name="renderer" content="webkit" />
 <link rel="icon" href="//www.hz.com/favicon.ico" mce_href="//www.hz.com/favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="" />
-common, index
 
+<%-int_css('hz_common,hz_index')%>
 </head>
 <body>
 
-hz_index,hz_core
+@@js
 
+<%-int_js(hz_core,hz_index)%>
 </body>
 </html>
