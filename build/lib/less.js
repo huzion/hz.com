@@ -38,7 +38,7 @@ var main = {
         const debugDir     = config.debugPath;
         const distDir      = config.distPath;
         const _lessSrcPath = srcDir + '/less';
-        const destDir      = config.evn === "test" || config.evn === "www" ? distDir : debugDir;
+        const destDir      = config.env === "test" || config.env === "www" ? distDir : debugDir;
 
         const _lessFile    = [
             `${_lessSrcPath}/**/*.less`,
@@ -65,12 +65,11 @@ var main = {
             .pipe(rev())
             .pipe(sourcemaps.write(config.dirname + '/maps/sourcemaps/css'))
             .pipe(gulp.dest(destDir + '/css/'))
-            .pipe(rev.manifest('cssMap.json',{"merge":true}))
+            .pipe(rev.manifest('cssmap.json',{"merge":true}))
             .pipe(gulp.dest(config.dirname + '/maps/'))
             .pipe(through.obj(function(file,enc,cb){
                 console.log(color.green(file.path) + '..........' + color.cyan('[done]'));
             }))
-        console.log('处理Less完成！');
     }
 }
 module.exports = main;

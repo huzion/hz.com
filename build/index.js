@@ -25,16 +25,16 @@ var main = {
         var _self = this;
 
         /*全局配置缓存*/
-        _self.setting(config);
-
-        /*执行dev构建*/
-        _self.dev();
+        _self.setting(config, () => {
+            /*执行dev构建*/
+            _self.dev();
+        });
 
     },
 
     /*配置config缓存*/
-    setting: function(config) {
-        console.log(color.bgGreen('载入配置信息.......'));
+    setting: function(config, callback) {
+        console.log(color.bgGreen.blue('[  载入配置信息......  ]'));
         var _self = this;
         var _config = config || _self.noticeConfig();
         _config.dirname     = _config.dirname.replace(/\\/g,'/');
@@ -44,6 +44,7 @@ var main = {
         _config.distPath    = path.join(_config.dirname, _config.path.dist).replace(/\\/g,'/');
         global.Cache        = {};
         global.Cache.config = _config;
+        callback();
     },
 
     /*提示配置文件信息*/

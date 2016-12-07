@@ -1,6 +1,8 @@
 {
+  "E:/github/hz.com/maps/sourcemaps/css/hz_global.css": "E:/github/hz.com/maps/sourcemaps/css/hz_global-9783744431.css.map",
   "E:/github/hz.com/maps/sourcemaps/css/hz_index.css": "E:/github/hz.com/maps/sourcemaps/css/hz_index-50e685cb72.css.map",
   "E:/github/hz.com/maps/sourcemaps/css/hz_login_reg.css": "E:/github/hz.com/maps/sourcemaps/css/hz_login_reg-8a72749d7d.css.map",
+  "hz_global.css": "hz_global-9783744431.css",
   "hz_index.css": "hz_index-50e685cb72.css",
   "hz_login_reg.css": "hz_login_reg-8a72749d7d.css"
 }

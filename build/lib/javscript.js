@@ -58,12 +58,11 @@ var main = {
             .pipe(rev())
             .pipe(sourcemaps.write('../../maps/sourcemaps/js'))
             .pipe(gulp.dest(config.debugPath + '/js/'))
-            .pipe(rev.manifest('jsMap.json',{"merge":true}))
+            .pipe(rev.manifest('jsmap.json',{"merge":true}))
             .pipe(gulp.dest(config.dirname + '/maps/'))
             .pipe(through.obj(function(file,enc,cb){
                 console.log(color.green(file.path) + '.........' + color.cyan('[done]'));
             }))
-        console.log('JS构建完成！');
     },
 
     /*发布JS 用于生产环境*/
@@ -83,7 +82,6 @@ var main = {
             }))
             .pipe(sourcemaps.write('../../maps/sourcemaps/js'))
             .pipe(gulp.dest(distDir + '/js/'))
-        console.log('JS构建完成！');
     },
 
     /*构建核心库 用于开发环境*/

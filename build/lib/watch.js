@@ -68,8 +68,8 @@ var watcher = function() {
     var _list    = [];
     var srcDir   = config.srcPath;
     var _dirname = config.dirname;
-    console.log(color.yellow('执行watch'));
-    
+    console.log(color.bgGreen.blue('[  执行watch  ]'));
+
     watch(_file, (file) => {
         try {
             var _event = file.event;

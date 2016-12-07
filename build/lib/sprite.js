@@ -35,7 +35,7 @@ var main = {
             distDir = config.distPath;
 
         var _spSrcPath = srcDir + '/sprite';
-        var destDir = config.evn === "test" || config.evn === "www" ? distDir : debugDir;
+        var destDir = config.env === "test" || config.env === "www" ? distDir : debugDir;
 
         var _spFile = [
             `${_spSrcPath}/**/*.png`
@@ -88,7 +88,6 @@ var main = {
                     console.log(color.green(file.path) + '..........' + color.cyan('[done]'));
                 }))
         });
-        console.log('雪碧图构建完成!')
     },
 }
 module.exports = main;

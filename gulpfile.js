@@ -16,7 +16,6 @@ config.dirname = config.dirname || __dirname;
 
 gulp.task('default',() => {
     build.init(config);
-    build.dev(config);
 });
 
 gulp.task('build',() => {

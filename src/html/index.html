@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-@@include('./_common/header.html',{
-    "title": "首页")
-<%-int_css('hz_common,hz_index')%>
+@@include('./_common/header.html',{"title": "首页")
+<%-init_css('hz_global,hz_index')%>
 </head>
 <body>
 
 @@include('./_common/footer.html')
-<%-int_js(hz_core,hz_index)%>
+<%-init_js('hz_core,hz_user_index')%>
 </body>
 </html>

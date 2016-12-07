@@ -30,7 +30,7 @@ var main = {
         const debugDir    = config.debugPath;
         const distDir     = config.distPath;
         const _imgSrcPath = srcDir + '/img';
-        var destDir       = config.evn === "test" || config.evn === "www" ? distDir : debugDir;
+        var destDir       = config.env === "test" || config.env === "www" ? distDir : debugDir;
 
         var _imgFile      = [
             `${_imgSrcPath}/*.{gif,jpg,jpeg,png,svg}`,
@@ -41,12 +41,11 @@ var main = {
             .pipe(imagemin())
             .pipe(rev())
             .pipe(gulp.dest(destDir + '/img/'))
-            .pipe(rev.manifest('imgMap.json',{"merge":true}))
+            .pipe(rev.manifest('imgmap.json',{"merge":true}))
             .pipe(gulp.dest(config.dirname + '/maps/'))
             .pipe(through.obj(function(file,enc,cb){
                 console.log(color.green(file.path) + '..........' + color.cyan('[done]'));
             }))
-        gutil.log('处理图片完成！');
     }
 }
 module.exports = main;
