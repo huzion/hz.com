@@ -37,26 +37,6 @@ var utils = {
         var _path = path.relative(srcDir, filePath);
         _path = _path.replace(/\\/g, '/').replace(/\/\//g,'/');
         return _path.split('/')[0];
-    },
-
-    /*雪碧图构建*/
-    sprite: () => {
-
-    },
-
-    /*js构建*/
-    js: () => {
-
-    },
-
-    /*less构建*/
-    less: () => {
-
-    },
-
-    /*图片构建*/
-    image: () => {
-
     }
 };
 
@@ -78,7 +58,7 @@ var watcher = function() {
             if(!!_event) {
                 _filePath = file.path.replace(/\\/g,"/");
 
-                if(_list.indexOf(_filePath) === -1) {
+                if(_list.indexOf(_filePath) < 0) {
                     _list.push(_filePath);
                     var _type = utils.getType(_filePath, srcDir);
                     switch (_type) {
