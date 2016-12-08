@@ -51,7 +51,7 @@ var main = {
             }).on('error', gutil.log))
             .pipe(gulp.dest(destDir + '/html'))
             .pipe(through.obj(function(file,enc,cb){
-                console.log(color.green(file.path) + '.........' + color.cyan('[done]'));
+                console.log(color.cyan(file.path) + '.........' + color.green.bold('[done]'));
             }))
     }
 }

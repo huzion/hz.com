@@ -1,1 +1,1 @@
-{"version":3,"sources":["hz.js"],"names":["a"],"mappings":"AAAA,GAAIA,GAAI","file":"../../../js/app/hz_hz.js","sourcesContent":["var a = 0;\r\n"]}
+{"version":3,"sources":["hz.js"],"names":["obj"],"mappings":"AAAA,GAAIA","file":"../../../../../../hz_hz.js","sourcesContent":["var obj = {};\n"]}

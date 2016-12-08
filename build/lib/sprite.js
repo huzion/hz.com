@@ -85,7 +85,7 @@ var main = {
                 .pipe(gulpif('*.png', gulp.dest(outputImgPath)))
                 .pipe(gulpif('*.less', gulp.dest(outputLessPath)))
                 .pipe(through.obj(function(file,enc,cb){
-                    console.log(color.green(file.path) + '..........' + color.cyan('[done]'));
+                    console.log(color.cyan(file.path) + '..........' + color.green.bold('[done]'));
                 }))
         });
     },

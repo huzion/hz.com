@@ -63,20 +63,20 @@ var watcher = function() {
                     var _type = utils.getType(_filePath, srcDir);
                     switch (_type) {
                         case "html":
-                            html.init((_filePath) => gutil.log(color.green(file.relative) + '.........' + color.cyan('[done]')));
+                            html.init((_filePath) => gutil.log(color.cyan(file.relative) + '.........' + color.green.bold('[done]')));
                             break;
                         case "img":
-                            image.init((_filePath) => gutil.log(color.green(file.relative) + '.........' + color.cyan('[done]')));
+                            image.init((_filePath) => gutil.log(color.cyan(file.relative) + '.........' + color.green.bold('[done]')));
                             break;
                         case "js":
-                            js.init((_filePath) => gutil.log(color.green(file.relative) + '.........' + color.cyan('[done]')));
+                            js.init((_filePath) => gutil.log(color.cyan(file.relative) + '.........' + color.green.bold('[done]')));
                             break;
                         case "less":
-                            less.init((_filePath) => gutil.log(color.green(file.relative) + '.........' + color.cyan('[done]')));
+                            less.init((_filePath) => gutil.log(color.cyan(file.relative) + '.........' + color.green.bold('[done]')));
                             break;
 
                         case "sprite":
-                            sprite.init((_filePath) => gutil.log(color.green(file.relative) + '.........' + color.cyan('[done]')));
+                            sprite.init((_filePath) => gutil.log(color.cyan(file.relative) + '.........' + color.green.bold('[done]')));
                             break;
                     }
                 }

@@ -122,8 +122,25 @@ var main = {
     },
 
     /*发布环境构建*/
-    publish: function() {
+    publish: function(config) {
         var _self = this;
+
+        /*全局配置缓存*/
+        _self.setting(config, () => {
+
+            /*执行build构建*/
+            sprite.init(() => {
+                image.init(() => {
+                    less.init(() => {
+                        js.init(() => {
+                            html.init(() => {
+
+                            });
+                        });
+                    });
+                });
+            });
+        });
     },
 
     /*dev环境核心库构建*/
@@ -131,9 +148,9 @@ var main = {
         var _self = this;
 
         /*全局配置缓存*/
-        _self.setting(config);
-
-        js.core();
+        _self.setting(config, () => {
+            js.core();
+        });
     }
 }
 

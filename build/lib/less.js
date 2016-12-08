@@ -68,7 +68,7 @@ var main = {
             .pipe(rev.manifest('cssmap.json',{"merge":true}))
             .pipe(gulp.dest(config.dirname + '/maps/'))
             .pipe(through.obj(function(file,enc,cb){
-                console.log(color.green(file.path) + '..........' + color.cyan('[done]'));
+                console.log(color.cyan(file.path) + '..........' + color.green.bold('[done]'));
             }))
     }
 }

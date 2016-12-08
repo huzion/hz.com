@@ -1,2 +1,2 @@
-var a=0;
-//# sourceMappingURL=../../maps/sourcemaps/js/hz_hz.js.map
+var obj={};
+//# sourceMappingURL=E:/github/hz.com/maps/sourcemaps/js/hz_hz.js.map

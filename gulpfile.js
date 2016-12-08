@@ -19,7 +19,7 @@ gulp.task('default',() => {
 });
 
 gulp.task('build',() => {
-    build.publishBuild(config);
+    build.publish(config);
 });
 
 gulp.task('init',() => {
