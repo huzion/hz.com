@@ -63,6 +63,7 @@ var main = {
             color.yellow('\n    "src": "./src", ') + color.gray('//开发源码目录') +
             color.yellow('\n    "debug": "./debug", ') + color.gray('//构建生成的测试目录') +
             color.yellow('\n    "dist": "./dist" ') + color.gray('//构建生成的发布目录') +
+            color.yellow('\n    "map": "./maps" ') + color.gray('//生成的map文件目录') +
             color.yellow('\n  },') +
             color.yellow('\n  "appJsPath": "app", ') + color.gray('//js业务逻辑代码文件目录') +
             color.yellow('\n  "htmlViews": "./views", ') + color.gray('//视图文件生成目录') +
