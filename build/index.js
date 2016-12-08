@@ -29,22 +29,39 @@ var main = {
             /*执行dev构建*/
             _self.dev();
         });
-
     },
 
     /*配置config缓存*/
     setting: function(config, callback) {
         console.log(color.bgGreen.blue('[  载入配置信息......  ]'));
         var _self = this;
-        var _config = config || _self.noticeConfig();
-        _config.dirname     = _config.dirname.replace(/\\/g,'/');
-        _config.separator   = !!_config.separator ? _config.separator : '_';
-        _config.srcPath     = path.join(_config.dirname, _config.path.src).replace(/\\/g,'/');
-        _config.debugPath   = path.join(_config.dirname, _config.path.debug).replace(/\\/g,'/');
-        _config.distPath    = path.join(_config.dirname, _config.path.dist).replace(/\\/g,'/');
-        global.Cache        = {};
-        global.Cache.config = _config;
-        callback();
+        var _config = config || {};
+        var isConfigOk = true;
+
+        var arr = ['path', 'domain', 'env'];
+        arr.map(item => {
+            if(isConfigOk) {
+                if(!(item in _config)) {
+                    isConfigOk = false;
+                }
+            } else {
+                return false;
+            }
+        });
+
+        if(isConfigOk) {
+            _config.dirname     = _config.dirname.replace(/\\/g,'/');
+            _config.separator   = !!_config.separator ? _config.separator : '_';
+            _config.srcPath     = path.join(_config.dirname, _config.path.src).replace(/\\/g,'/');
+            _config.debugPath   = path.join(_config.dirname, _config.path.debug).replace(/\\/g,'/');
+            _config.distPath    = path.join(_config.dirname, _config.path.dist).replace(/\\/g,'/');
+            global.Cache        = {};
+            global.Cache.config = _config;
+            callback();
+        } else {
+            _self.noticeConfig();
+            return false;
+        }
     },
 
     /*提示配置文件信息*/
@@ -64,6 +81,13 @@ var main = {
             color.yellow('\n    "debug": "./debug", ') + color.gray('//构建生成的测试目录') +
             color.yellow('\n    "dist": "./dist" ') + color.gray('//构建生成的发布目录') +
             color.yellow('\n    "map": "./maps" ') + color.gray('//生成的map文件目录') +
+            color.yellow('\n  },') +
+            color.yellow('\n   "domain": {') +
+            color.yellow('\n    "local": "local.xxx.com", ') + color.gray('//本地环境域名') +
+            color.yellow('\n    "dev": "dev.xxx.com", ') + color.gray('//调试环境域名') +
+            color.yellow('\n    "test": "test.xxx.com", ') + color.gray('//测试环境域名') +
+            color.yellow('\n    "release": "rc.xxx.com", ') + color.gray('//RC环境域名') +
+            color.yellow('\n    "www": "www.xxx.com", ') + color.gray('//生产环境域名') +
             color.yellow('\n  },') +
             color.yellow('\n  "appJsPath": "app", ') + color.gray('//js业务逻辑代码文件目录') +
             color.yellow('\n  "htmlViews": "./views", ') + color.gray('//视图文件生成目录') +

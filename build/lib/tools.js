@@ -32,7 +32,7 @@ var tools = {
                 return false;
             }
         } else {
-            gutil.log(color.red('获取map文件类型错误!'));
+            gutil.log(color.red('获取' + type + 'map文件类型错误!'));
             return false;
         }
     },
@@ -41,6 +41,7 @@ var tools = {
     getStaticsPath: () => {
         var config = tools.getConfig();
         var _env = config.env
+        var _domain = !!config.domain[_env] ? config.domain[_env] : 'localhost'
         var _staticPath = '//' + config.domain[_env];
         return _staticPath;
     },
@@ -102,11 +103,6 @@ var tools = {
         });
 
         return jsLink;
-    },
-
-    /*html压缩*/
-    htmlMinify: function() {
-
     }
 };
 module.exports = tools;
