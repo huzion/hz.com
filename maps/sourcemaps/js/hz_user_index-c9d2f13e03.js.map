@@ -1,0 +1,1 @@
+{"version":3,"names":[],"mappings":"","sources":["user/index.js"],"sourcesContent":["var obj = {\r\n    init: function() {\r\n        console.log('user index')\r\n    }\r\n}\r\nobj.init()\r\n"],"file":"../../../../../../hz_user_index-c9d2f13e03.js"}
