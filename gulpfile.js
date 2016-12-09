@@ -15,11 +15,7 @@ var config     = require('./config.json');
 config.dirname = config.dirname || __dirname;
 
 gulp.task('default',() => {
-    build.init(config);
-});
-
-gulp.task('build',() => {
-    build.publish(config);
+    build.default(config);
 });
 
 gulp.task('init',() => {

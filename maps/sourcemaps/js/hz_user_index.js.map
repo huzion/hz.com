@@ -1,1 +1,0 @@
-{"version":3,"sources":["user/index.js"],"names":["obj","init","console","log"],"mappings":"AAAA,GAAIA,MACAC,KAAM,WACFC,QAAQC,IAAI,eAGpBH,KAAIC","file":"../../../../../../hz_user_index.js","sourcesContent":["var obj = {\r\n    init: function() {\r\n        console.log('user index')\r\n    }\r\n}\r\nobj.init()\r\n"]}

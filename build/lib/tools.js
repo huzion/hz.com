@@ -25,7 +25,6 @@ var tools = {
             if(fs.existsSync(_file)) {
                 var _source = fs.readFileSync(_file).toString('utf-8');
                 obj = JSON.parse(_source);
-                console.log(obj)
                 return obj;
             } else {
                 gutil.log(color.red(type + 'map文件不存在！'));
@@ -40,7 +39,7 @@ var tools = {
     /*获取静态资源路径*/
     getStaticsPath: () => {
         var config = tools.getConfig();
-        var _env = config.env
+        var _env = config._env
         var _domain = !!config.domain[_env] ? config.domain[_env] : 'localhost'
         var _staticPath = '//' + config.domain[_env];
         return _staticPath;

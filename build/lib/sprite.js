@@ -32,10 +32,11 @@ var main = {
 
         var srcDir = config.srcPath,
             debugDir = config.debugPath,
-            distDir = config.distPath;
+            distDir = config.distPath,
+            _env = config._env;
 
         var _spSrcPath = srcDir + '/sprite';
-        var destDir = config.env === "test" || config.env === "www" ? distDir : debugDir;
+        var destDir = ['test', 'rc', 'www'].indexOf(config._env) > -1 ? distDir : debugDir;
 
         var _spFile = [
             `${_spSrcPath}/**/*.png`
@@ -43,7 +44,7 @@ var main = {
 
         fs.readdirSync(_spSrcPath).map(function(file) {
             var _fileName = file;
-            var _imgPath = destDir + '/img/sprite/' + file + '.png';
+            var _imgPath = '//' + config.domain[_env] + '/img/sprite/' + file + '.png';
             var _imgName = file + '.png';
             var _lessName = file + '.less';
 
@@ -61,8 +62,8 @@ var main = {
                     /*单元雪碧图边框*/
                     padding: 5,
 
-                    /*生成的雪碧图路径(作废，在下面gulp.dest处生成)*/
-                    // imgPath: _imgPath,
+                    /*生成的雪碧图路径*/
+                    imgPath: _imgPath,
 
                     /*合并布局方式*/
                     algorithm: 'binary-tree',

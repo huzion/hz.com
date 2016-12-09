@@ -5,7 +5,15 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit l"
+    "test": "echo \"Error: no test specified\" && exit l",
+    "dev": "gulp --color",
+    "core": "gulp core --color",
+    "core:www": "gulp core --e www --color",
+    "build:local": "gulp --e local --color",
+    "build:dev": "gulp --e dev --color",
+    "build:test": "gulp --e test --color",
+    "build:rc": "gulp --e rc --color",
+    "build:www": "gulp --e www --color"
   },
   "devDependencies": {
     "babel": "^6.5.2",

@@ -20,13 +20,17 @@ var main = {
     init: function(callback) {
         var _self  = this;
         var config = global.Cache.config;
-        if(config.env === 'test' || config.env === 'www') {
+
+        if(['test', 'rc', 'www'].indexOf(config._env) > -1) {
             _self.publishJs(config);
-        } else {
+        }else {
             _self.buildJs(config);
         }
+
         callback();
     },
+
+    /*判断*/
 
     /*获取js文件*/
     getJsFile: function(config) {
@@ -49,7 +53,6 @@ var main = {
         var _jsFile = _self.getJsFile(config);
 
         gulp.src(_jsFile)
-            .pipe(sourcemaps.init())
             .pipe(rename(function(path) {
                 var _dirname = path.dirname.replace(/\\/g,config.separator);
                 if(!!_dirname && _dirname !== '.') {
@@ -60,7 +63,6 @@ var main = {
                 path.dirname = '/';
             }))
             .pipe(rev())
-            .pipe(sourcemaps.write(config.dirname + '/maps/sourcemaps/js'))
             .pipe(gulp.dest(config.debugPath + '/js/'))
             .pipe(rev.manifest('jsmap.json',{"merge":true}))
             .pipe(gulp.dest(config.dirname + '/maps/'))
@@ -113,16 +115,13 @@ var main = {
         var _fileName = prefix + config.separator + 'core.js';
 
         gulp.src(_jsFile)
-            .pipe(sourcemaps.init())
-            .pipe(uglify())
             .pipe(concat({path: _fileName, newLine: ';'}))
-            .pipe(sourcemaps.write('../../maps/sourcemaps/js'))
             .pipe(gulp.dest(config.debugPath + '/js/'))
 
         console.log('JS核心库构建完成');
     },
 
-    /*发布核心库 用于生产环境*/
+    /*构建核心库 用于生产环境*/
     publishCoreJs: function(config) {
         console.log('开始构建JS核心库...');
         const prefix     = config.prefix;
@@ -140,6 +139,7 @@ var main = {
         gulp.src(_jsFile)
             .pipe(sourcemaps.init())
             .pipe(concat({path: _fileName, newLine: ';'}))
+            .pipe(uglify())
             .pipe(sourcemaps.write('../../maps/sourcemaps/js'))
             .pipe(gulp.dest(config.distPath + '/js/'))
             .pipe(through.obj(function(file,enc,cb){
@@ -147,17 +147,6 @@ var main = {
             }))
 
         console.log('JS核心库构建完成');
-    },
-
-    core: function() {
-        var _self = this;
-        var config = global.Cache.config;
-
-        if(config.env === 'test' || config.env === 'www') {
-            _self.publishCoreJs(config);
-        } else {
-            _self.buildCoreJs(config);
-        }
     }
 }
 module.exports = main;

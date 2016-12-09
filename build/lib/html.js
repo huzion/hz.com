@@ -16,13 +16,14 @@ const tools = require('./tools');
 
 var main = {
     init: function(callback) {
+        var _callback = callback || function(){};
         var _self  = this;
         var config = global.Cache.config;
 
         /*html处理*/
         _self.buildHtml(config);
 
-        callback();
+        _callback();
     },
 
     /*构建html*/
@@ -32,7 +33,7 @@ var main = {
         const debugDir     = config.debugPath;
         const distDir      = config.distPath;
         const _htmlSrcPath = srcDir + '/html';
-        var destDir        = config.env === "test" || config.env === "www" ? distDir : debugDir;
+        var destDir = ['test', 'rc', 'www'].indexOf(config._env) > -1 ? distDir : debugDir;
         var _htmlFile      = [
             `${_htmlSrcPath}/**/*.html`,
             `!${_htmlSrcPath}/**/_*.html`,

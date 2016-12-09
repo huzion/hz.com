@@ -38,7 +38,7 @@ var main = {
         const debugDir     = config.debugPath;
         const distDir      = config.distPath;
         const _lessSrcPath = srcDir + '/less';
-        const destDir      = config.env === "test" || config.env === "www" ? distDir : debugDir;
+        var destDir = ['test', 'rc', 'www'].indexOf(config._env) > -1 ? distDir : debugDir;
 
         const _lessFile    = [
             `${_lessSrcPath}/**/*.less`,
