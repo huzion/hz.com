@@ -31,6 +31,7 @@
     "gutil": "^1.6.4",
     "less-plugin-autoprefix": "^1.5.1",
     "merge-stream": "^1.0.1",
+    "minimist": "^1.2.0",
     "pump": "^1.0.1",
     "through": "^2.3.8",
     "through2": "^2.0.3",

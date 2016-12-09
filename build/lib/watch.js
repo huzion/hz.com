@@ -3,14 +3,14 @@
  * @description 执行watch模块
  */
 
-/*引入npm包*/
+/*引入模块*/
 const gulp  = require('gulp');
 const watch = require('gulp-watch');
 const gutil = require('gulp-util');
 const color = gutil.colors;
 const path  = require('path');
 
-/*引入构建模块*/
+/*引入本地构建模块*/
 const js       = require('./javscript');
 const sprite   = require('./sprite');
 const image    = require('./image');

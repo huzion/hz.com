@@ -3,7 +3,7 @@
  * @description 对图片代码进行压缩合并发布等处理
  */
 
-/*引入npm包*/
+/*引入模块*/
 const gulp         = require('gulp');
 const imagemin     = require('gulp-imagemin');
 const gutil        = require('gulp-util');

@@ -3,7 +3,7 @@
  * @description 将雪碧图按目录名合并，并以目录名命名图片及样式文件
  */
 
-/*引入npm包*/
+/*引入模块*/
 const fs          = require('fs');
 const gulp        = require('gulp');
 const gulpif      = require('gulp-if');

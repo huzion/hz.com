@@ -3,7 +3,7 @@
  * @description 对javascript代码进行压缩合并发布等处理
  */
 
-/*引入npm包*/
+/*引入模块*/
 const gulp                 = require('gulp');
 const less                 = require('gulp-less');
 const cleanCss             = require('gulp-clean-css');

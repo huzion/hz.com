@@ -4,14 +4,15 @@
  * @author huzi
  */
 
-/*引入npm包*/
+/*引入模块*/
 const gulp     = require('gulp')
 const through2 = require('through2');
 const path     = require('path');
 const gutil    = require('gulp-util');
 const color    = gutil.colors;
+const minimist = require('minimist');
 
-/*引入构建模块*/
+/*引入本地构建模块*/
 const js       = require('./lib/javscript');
 const sprite   = require('./lib/sprite');
 const image    = require('./lib/image');
@@ -24,11 +25,31 @@ var main = {
     init: function(config) {
         var _self = this;
 
+        var _env = _self.getEnv();
+
         /*全局配置缓存*/
         _self.setting(config, () => {
             /*执行dev构建*/
             _self.dev();
         });
+    },
+
+    /*获取命令行参数*/
+    getArgv: function() {
+        var _argv = process.argv.slice(2);
+
+        var _knownOptions = {string: "e"};
+        var options = minimist(_argv, _knownOptions);
+
+        return options;
+    },
+
+    /*获取命令行环境参数*/
+    getEnv: function() {
+        var _self = this;
+        var _argv = _self.getArgv();
+        var _env = _argv.e;
+        return _env;
     },
 
     /*配置config缓存*/

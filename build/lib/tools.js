@@ -3,7 +3,7 @@
  * @description 一些手写工具的集合
  */
 
-/*引入npm包*/
+/*引入模块*/
 const fs    = require('fs');
 const gutil = require('gulp-util');
 const color = gutil.colors;
